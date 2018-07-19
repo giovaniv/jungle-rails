@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @items = @order.line_items.all
+    @items = @order.line_items.order(created_at: :desc)
   end
 
   def create
