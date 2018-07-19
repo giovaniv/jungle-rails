@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks for your order, <%= @user.first_name%> <%= @user.last_name%></h1>
+
+    <% items = @order.line_items.order(created_at: :desc) %>
+
+    <div class="panel panel-default items">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Unit Price</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% cart_total = 0 %>
+      <% items.each do |item| %>
+        <% if product = Product.find_by(id: item.product_id) %>
+        <% item_total = product.price * item.quantity %>
+        <% cart_total += item_total %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= item.quantity %></td>
+          <td><%= item_total %></td>
+        </tr>
+      <% end %>
+      <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="4">
+            TOTAL:
+          </th>
+          <th>
+            <%= cart_total %>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  </body>
+</html>
