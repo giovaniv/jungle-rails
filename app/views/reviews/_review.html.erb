@@ -16,12 +16,14 @@
         </dl>
       </div>
 
-      <% if current_user.id == review.user_id %>
-        <div class="col-sm-3">
-          <%= link_to 'Delete review', product_review_path(@product, review),
-          method: :delete,
-          data: { confirm: 'Are you sure?' } %>
-        </div>
+      <% if current_user %>
+        <% if current_user.id == review.user_id %>
+          <div class="col-sm-3">
+            <%= link_to 'Delete review', product_review_path(@product, review),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+          </div>
+        <% end %>
       <% end %>
 
     </div>

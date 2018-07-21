@@ -136,8 +136,8 @@ cat3.products.create!({
 
 # User.destroy_all
 
-user1 = User.find_or_create_by! first_name: 'Giovani', last_name: 'Vasconcelos', email: 'giovaniv@gmail.com', password_digest: '123'
-user2 = User.find_or_create_by! first_name: 'Giovani', last_name: 'Vasconcelos', email: 'giovaniv@gmail.com', password_digest: '123'
+user1 = User.find_or_create_by! first_name: 'Bruce', last_name: 'Wayne', email: 'bruce@wayne.com', password_digest: 'batman'
+user2 = User.find_or_create_by! first_name: 'Peter', last_name: 'Parker', email: 'pp@gwen.com', password_digest: 'spiderman'
 
 user1.reviews.create!({
   product_id: 1,
