@@ -1,18 +1,28 @@
 
+  <% @name = User.find_by(id: review.user_id) %>
+
   <article class="product-detail">
 
     <div class="row">
 
-      <div class="col-sm-8">
+      <div class="col-sm-7">
         <dl class="dl-horizontal">
           <dt>Name:</dt>
-          <dd><%= review.user_id %></dd>
+          <dd><%= @name.first_name %> <%= @name.last_name %></dd>
           <dt>Rating:</dt>
-          <dd><%= review.rating %> / 5</dd>
+          <dd><% review.rating.times do %>⭐<% end %></dd>
           <dt>Comments:</dt>
           <dd><%= review.description %></dd>
         </dl>
       </div>
+
+      <% if current_user.id == review.user_id %>
+        <div class="col-sm-3">
+          <%= link_to 'Delete review', product_review_path(@product, review),
+          method: :delete,
+          data: { confirm: 'Are you sure?' } %>
+        </div>
+      <% end %>
 
     </div>
 
