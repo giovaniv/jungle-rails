@@ -132,5 +132,29 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+## CREATING USERS
+
+# User.destroy_all
+
+user1 = User.find_or_create_by! first_name: 'Giovani', last_name: 'Vasconcelos', email: 'giovaniv@gmail.com', password_digest: '123'
+user2 = User.find_or_create_by! first_name: 'Giovani', last_name: 'Vasconcelos', email: 'giovaniv@gmail.com', password_digest: '123'
+
+user1.reviews.create!({
+  product_id: 1,
+  description: "Awesome product!",
+  rating: 5
+})
+
+user2.reviews.create!({
+  product_id: 1,
+  description: "Average product!",
+  rating: 3
+})
+
+user2.reviews.create!({
+  product_id: 2,
+  description: "Poor product!",
+  rating: 2
+})
 
 puts "DONE!"
